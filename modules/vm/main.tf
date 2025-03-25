@@ -1,4 +1,4 @@
-resource "azurerm_network_interface" "vm_nic" {
+resource "azurestack_network_interface" "vm_nic" {
   name                = "vm-nic"
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -10,15 +10,18 @@ resource "azurerm_network_interface" "vm_nic" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "vm" {
-  name                = "devops-vm"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  size                = "Standard_D4s_v3"
-  admin_username      = var.vm_admin_username
-  admin_password      = var.vm_admin_password
-  disable_password_authentication = false
-  network_interface_ids = [azurerm_network_interface.vm_nic.id]
+resource "azurestack_linux_virtual_machine" "vm" {
+  name                  = "devops-vm"
+  resource_group_name   = var.resource_group_name
+  location              = var.location
+  size                  = "Standard_D4s_v3"
+  admin_username        = var.vm_admin_username
+  network_interface_ids = [azurestack_network_interface.vm_nic.id]
+
+  admin_ssh_key {
+    username   = var.vm_admin_username
+    public_key = var.ssh_public_key
+  }
 
   os_disk {
     caching              = "ReadWrite"
@@ -32,3 +35,4 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 }
+
