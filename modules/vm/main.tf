@@ -1,12 +1,13 @@
 resource "azurestack_network_interface" "vm_nic" {
-  name                = "vm-nic"
+  name                = "devops-vm-nic"
   location            = var.location
   resource_group_name = var.resource_group_name
 
   ip_configuration {
     name                          = "internal"
     subnet_id                     = var.subnet_id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "10.0.1.4"
   }
 }
 
