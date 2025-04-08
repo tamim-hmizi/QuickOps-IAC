@@ -19,6 +19,13 @@ resource "azurestack_subnet" "aks_subnet" {
   address_prefix       = "10.0.2.0/24"
 }
 
+resource "azurestack_subnet" "aks_agents_subnet" {
+  name                 = "devops-aks-agents-subnet"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurestack_virtual_network.vnet.name
+  address_prefix       = "10.0.3.0/24"
+}
+
 
 resource "azurestack_public_ip" "public_ip" {
   name                = "devops-vm-public-ip"

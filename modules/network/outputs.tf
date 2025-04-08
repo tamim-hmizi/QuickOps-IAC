@@ -6,6 +6,10 @@ output "aks_subnet_id" {
   value = azurestack_subnet.aks_subnet.id
 }
 
+output "aks_agents_subnet_id" {
+  value = azurestack_subnet.aks_agents_subnet.id
+}
+
 output "public_ip_id" {
   value = azurestack_public_ip.public_ip.id
 }

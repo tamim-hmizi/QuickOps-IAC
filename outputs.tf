@@ -6,6 +6,10 @@ output "aks_subnet_id" {
   value = module.network.aks_subnet_id
 }
 
+output "aks_agents_subnet_id" {
+  value = module.network.aks_agents_subnet_id
+}
+
 output "public_ip_id" {
   value = module.network.public_ip_id
 }
