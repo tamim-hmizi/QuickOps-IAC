@@ -22,7 +22,7 @@ output "vm_private_ip" {
   value = module.vm.vm_private_ip
 }
 
-output "vm_nsg" {
-  value = module.network.vm_nsg
+output "vm_nsg_id" {
+  value = module.network.vm_nsg_id
 }
 

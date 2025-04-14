@@ -12,11 +12,11 @@ resource "azurestack_network_security_group" "vm_nsg" {
 
   security_rule {
     name                       = "Allow-SSH"
-    priority                   = 1001
+    priority                   = 101
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
-    source_port_range          = "*"
+    source_port_range          = "22"
     destination_port_range     = "22"
     source_address_prefix      = "*"
     destination_address_prefix = "*"

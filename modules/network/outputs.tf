@@ -18,6 +18,6 @@ output "public_ip" {
   value = azurestack_public_ip.public_ip.ip_address
 }
 
-output "vm_nsg" {
+output "vm_nsg_id" {
   value = azurestack_network_security_group.vm_nsg.id
 }

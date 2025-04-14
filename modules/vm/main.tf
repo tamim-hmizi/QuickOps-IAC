@@ -8,14 +8,7 @@ resource "azurestack_network_interface" "vm_nic" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Static"
     private_ip_address            = "10.0.1.4"
-  }
-  ip_configuration {
-    name                          = "public"
-    subnet_id                     = var.subnet_id
     public_ip_address_id          = var.public_ip_id
-    private_ip_address_allocation = "Static"
-    private_ip_address            = "10.0.1.5"
-    
   }
 }
 
