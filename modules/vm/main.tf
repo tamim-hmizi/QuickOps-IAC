@@ -6,6 +6,8 @@ resource "azurestack_network_interface" "vm_nic" {
   ip_configuration {
     name                          = "internal"
     subnet_id                     = var.subnet_id
+    primary                       = true
+    private_ip_address_version    = "IPv4"
     private_ip_address_allocation = "Static"
     private_ip_address            = "10.0.1.4"
     public_ip_address_id          = var.public_ip_id
