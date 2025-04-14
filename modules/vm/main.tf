@@ -15,6 +15,7 @@ resource "azurestack_network_interface" "vm_nic" {
     public_ip_address_id          = var.public_ip_id
     private_ip_address_allocation = "Static"
     private_ip_address            = "10.0.1.5"
+    
   }
 }
 
