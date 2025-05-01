@@ -91,5 +91,16 @@ resource "azurestack_public_ip" "public_ip" {
   sku                 = "Basic"
 }
 
+resource "azurestack_public_ip" "ingress_ip" {
+  name                = "ingressPublicIP"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+
+  allocation_method       = "Static"
+  sku                     = "Basic"
+  idle_timeout_in_minutes = 30
+}
+
+
 
 

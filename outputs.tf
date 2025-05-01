@@ -26,3 +26,7 @@ output "vm_nsg_id" {
   value = module.network.vm_nsg_id
 }
 
+output "ingress_public_ip" {
+  value = module.network.ingress_public_ip
+}
+
