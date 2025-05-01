@@ -99,6 +99,7 @@ resource "azurestack_public_ip" "ingress_ip" {
   allocation_method       = "Static"
   sku                     = "Basic"
   idle_timeout_in_minutes = 30
+  domain_name_label       = "ingress"
 }
 
 
