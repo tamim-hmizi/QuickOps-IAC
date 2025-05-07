@@ -157,5 +157,5 @@ resource "azurestack_public_ip" "public_ip" {
   resource_group_name = var.resource_group_name
   allocation_method   = "Static"
   sku                 = "Basic"
-  domain_name_label   = "vmmaster"
+  domain_name_label   = "quickops"
 }
