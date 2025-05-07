@@ -58,8 +58,91 @@ resource "azurestack_network_security_group" "vm_nsg" {
     destination_address_prefix = "*"
   }
 
-}
+  security_rule {
+    name                       = "Allow-Clair"
+    priority                   = 105
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "6060"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
 
+  security_rule {
+    name                       = "Allow-Elasticsearch"
+    priority                   = 106
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "9200"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow-Logstash"
+    priority                   = 107
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "5044"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow-Kibana"
+    priority                   = 108
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "5601"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow-Grafana"
+    priority                   = 109
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "3000"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow-Jenkins"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "8080"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow-Sonarqube"
+    priority                   = 111
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "9000"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+}
 
 resource "azurestack_subnet" "subnet" {
   name                 = "devops-subnet"
@@ -67,21 +150,6 @@ resource "azurestack_subnet" "subnet" {
   virtual_network_name = azurestack_virtual_network.vnet.name
   address_prefix       = "10.0.1.0/24"
 }
-
-resource "azurestack_subnet" "aks_subnet" {
-  name                 = "devops-aks-subnet"
-  resource_group_name  = var.resource_group_name
-  virtual_network_name = azurestack_virtual_network.vnet.name
-  address_prefix       = "10.0.2.0/24"
-}
-
-resource "azurestack_subnet" "aks_agents_subnet" {
-  name                 = "devops-aks-agents-subnet"
-  resource_group_name  = var.resource_group_name
-  virtual_network_name = azurestack_virtual_network.vnet.name
-  address_prefix       = "10.0.3.0/24"
-}
-
 
 resource "azurestack_public_ip" "public_ip" {
   name                = "devops-vm-public-ip"
@@ -91,18 +159,3 @@ resource "azurestack_public_ip" "public_ip" {
   sku                 = "Basic"
   domain_name_label   = "vmmaster"
 }
-
-resource "azurestack_public_ip" "ingress_ip" {
-  name                = "ingressPublicIP"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-
-  allocation_method       = "Static"
-  sku                     = "Basic"
-  idle_timeout_in_minutes = 30
-  domain_name_label       = "ingress"
-}
-
-
-
-
