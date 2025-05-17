@@ -18,7 +18,7 @@ resource "azurestack_linux_virtual_machine" "vm" {
   name                  = "devops-vm"
   resource_group_name   = var.resource_group_name
   location              = var.location
-  size                  = "Standard_D4s_v3"
+  size                  = "Standard_F64s_v2"
   admin_username        = var.vm_admin_username
   network_interface_ids = [azurestack_network_interface.vm_nic.id]
 
