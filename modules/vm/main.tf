@@ -1,29 +1,29 @@
-resource "azurestack_network_interface" "vm_nic" {
-  name                = "devops-vm-nic"
+resource "azurestack_network_interface" "quickops_nic" {
+  name                = "quickops-nic"
   location            = var.location
   resource_group_name = var.resource_group_name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = var.subnet_id
+    subnet_id                     = var.quickops_subnet_id
     primary                       = true
     private_ip_address_version    = "IPv4"
     private_ip_address_allocation = "Static"
     private_ip_address            = "10.0.1.4"
-    public_ip_address_id          = var.public_ip_id
+    public_ip_address_id          = var.quickops_public_ip_id
   }
 }
 
-resource "azurestack_linux_virtual_machine" "vm" {
-  name                  = "devops-vm"
+resource "azurestack_linux_virtual_machine" "quickops_vm" {
+  name                  = "quickops-vm"
   resource_group_name   = var.resource_group_name
   location              = var.location
   size                  = "Standard_F64s_v2"
-  admin_username        = var.vm_admin_username
-  network_interface_ids = [azurestack_network_interface.vm_nic.id]
+  admin_username        = var.quickops_admin_username
+  network_interface_ids = [azurestack_network_interface.quickops_nic.id]
 
   admin_ssh_key {
-    username   = var.vm_admin_username
+    username   = var.quickops_admin_username
     public_key = var.ssh_public_key
   }
 

@@ -1,12 +1,12 @@
-resource "azurestack_virtual_network" "vnet" {
-  name                = "devops-vnet"
+resource "azurestack_virtual_network" "quickops_vnet" {
+  name                = "quickops-vnet"
   location            = var.location
   resource_group_name = var.resource_group_name
   address_space       = ["10.0.0.0/16"]
 }
 
-resource "azurestack_network_security_group" "vm_nsg" {
-  name                = "devops-vm-nsg"
+resource "azurestack_network_security_group" "quickops_nsg" {
+  name                = "quickops-nsg"
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -105,7 +105,7 @@ resource "azurestack_network_security_group" "vm_nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-  
+
   security_rule {
     name                       = "Allow-AI"
     priority                   = 109
@@ -120,15 +120,15 @@ resource "azurestack_network_security_group" "vm_nsg" {
 
 }
 
-resource "azurestack_subnet" "subnet" {
-  name                 = "devops-subnet"
+resource "azurestack_subnet" "quickops_subnet" {
+  name                 = "quickops-subnet"
   resource_group_name  = var.resource_group_name
-  virtual_network_name = azurestack_virtual_network.vnet.name
+  virtual_network_name = azurestack_virtual_network.quickops_vnet.name
   address_prefix       = "10.0.1.0/24"
 }
 
-resource "azurestack_public_ip" "public_ip" {
-  name                = "devops-vm-public-ip"
+resource "azurestack_public_ip" "quickops_public_ip" {
+  name                = "quickops-public-ip"
   location            = var.location
   resource_group_name = var.resource_group_name
   allocation_method   = "Static"
