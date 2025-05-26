@@ -13,3 +13,11 @@ module "vm" {
   quickops_subnet_id      = module.network.quickops_subnet_id
   quickops_public_ip_id   = module.network.quickops_public_ip_id
 }
+
+module "storage" {
+  source               = "./modules/storage"
+  resource_group_name  = var.resource_group_name
+  location             = var.location
+  storage_account_name = "quickopstfstate"
+  container_name       = "tfstate"
+}
