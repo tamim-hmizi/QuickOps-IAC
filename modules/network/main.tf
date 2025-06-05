@@ -128,6 +128,17 @@ resource "azurestack_network_security_group" "quickops_nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+  security_rule {
+    name                       = "Allow-Nexus-https"
+    priority                   = 111
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "5050"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
 
 }
 
