@@ -5,6 +5,7 @@ provider "registry.terraform.io/hashicorp/azurestack" {
   version     = "1.0.0"
   constraints = "1.0.0"
   hashes = [
+    "h1:FPS7G7RsPQQ9zIj7RJ8ch6kHzHI9Et9Lw8Pa1BswhWU=",
     "h1:oAJ3Gz/EcCO3bPgT/b7C1ijwkIXV95V1IlKLTK9THQM=",
     "zh:0f146b6c003f30de8db697071f360f7c672e5f6f1df17fa361b57a70a3434fe4",
     "zh:150b6146979caf76bf619c0f0b1a5f3651b61aaa03254c8f450cb03c916d87c6",
